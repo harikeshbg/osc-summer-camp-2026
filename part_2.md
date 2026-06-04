@@ -417,6 +417,12 @@ Old final layer: 512 features → 1000 ImageNet classes
 New final layer: 512 features → 38 plant disease classes
 ```
 
+Model Parameters:
+
+```text
+A model has many internal numbers called parameters. During training, the model changes these numbers to improve its predictions. Total parameters means all the numbers in the model. Trainable parameters means the numbers we are allowing the model to change. If we freeze part of the model, those frozen numbers still exist, but they are not changed during training. This is called fine tuning where change the values of the parameters to change the model's behavior.
+```
+
 Important clarification:
 
 > Setting the output size to 38 does not magically teach the model plant diseases. It only creates 38 output slots. The model learns what those slots mean from the labeled training images.
