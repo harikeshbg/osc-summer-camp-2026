@@ -835,6 +835,264 @@ Of all the real examples of this class, how many did the model catch?
 
 F1-score balances precision and recall.
 
+# Precision, Recall, F1-Score — Simple Explanation
+
+## 1. Precision
+
+**Precision asks:**
+
+> When the model predicts a class, how often is it correct?
+
+Example:
+
+Suppose the model predicts **Tomato Early Blight** for 80 images.
+
+Out of those 80 predictions:
+
+```text
+60 are actually Tomato Early Blight
+20 are not Tomato Early Blight
+```
+
+So:
+
+```text
+Precision = correct predictions for this class / total predictions for this class
+Precision = 60 / 80
+Precision = 0.75 = 75%
+```
+
+Meaning:
+
+> When the model says “Tomato Early Blight,” it is correct 75% of the time.
+
+High precision means the model’s prediction is trustworthy.
+
+---
+
+## 2. Recall
+
+**Recall asks:**
+
+> Out of all real examples of a class, how many did the model catch?
+
+Example:
+
+Suppose there are 100 actual **Tomato Early Blight** images in the validation set.
+
+The model correctly finds 60 of them.
+
+So:
+
+```text
+Recall = correctly found examples / total real examples
+Recall = 60 / 100
+Recall = 0.60 = 60%
+```
+
+Meaning:
+
+> The model found 60% of the real Tomato Early Blight images, but missed 40%.
+
+High recall means the model catches most real cases.
+
+---
+
+## 3. Precision vs Recall Example
+
+Suppose we are detecting **Tomato Early Blight**.
+
+There are:
+
+```text
+100 real Tomato Early Blight images
+900 images from other classes
+```
+
+The model predicts **Tomato Early Blight** for 300 images.
+
+Out of those 300 predictions:
+
+```text
+95 are actually Tomato Early Blight
+205 are not Tomato Early Blight
+```
+
+So:
+
+```text
+Precision = 95 / 300 = 31.7%
+Recall    = 95 / 100 = 95%
+```
+
+This means:
+
+```text
+High recall    → The model caught most real Early Blight cases.
+Low precision  → The model also created many false alarms.
+```
+
+Simple interpretation:
+
+> The model is very aggressive. It catches most real disease cases, but it also wrongly labels many other leaves as that disease.
+
+---
+
+## 4. Opposite Example: High Precision, Low Recall
+
+Suppose there are again:
+
+```text
+100 real Tomato Early Blight images
+```
+
+The model predicts **Tomato Early Blight** only 20 times.
+
+Out of those 20 predictions:
+
+```text
+18 are actually Tomato Early Blight
+2 are not Tomato Early Blight
+```
+
+So:
+
+```text
+Precision = 18 / 20 = 90%
+Recall    = 18 / 100 = 18%
+```
+
+This means:
+
+```text
+High precision → When the model says Early Blight, it is usually correct.
+Low recall     → But it misses most real Early Blight cases.
+```
+
+Simple interpretation:
+
+> The model is very cautious. It avoids false alarms, but it misses many actual disease cases.
+
+---
+
+## 5. F1-Score
+
+**F1-score combines precision and recall into one balanced score.**
+
+It is useful when we care about both:
+
+```text
+not making too many false alarms
+not missing too many real disease cases
+```
+
+Formula:
+
+```text
+F1 = 2 × (precision × recall) / (precision + recall)
+```
+
+The F1-score is high only when both precision and recall are reasonably high.
+
+---
+
+## 6. How F1-Score Changes
+
+### Case A — Both precision and recall are high
+
+```text
+Precision = 0.90
+Recall    = 0.90
+F1-score  = 0.90
+```
+
+Meaning:
+
+> The model is both trustworthy and good at finding real cases.
+
+This is ideal.
+
+---
+
+### Case B — Precision high, recall low
+
+```text
+Precision = 0.90
+Recall    = 0.18
+F1-score  ≈ 0.30
+```
+
+Meaning:
+
+> The model is correct when it predicts the disease, but it misses many real disease cases.
+
+F1-score becomes low because recall is low.
+
+---
+
+### Case C — Precision low, recall high
+
+```text
+Precision = 0.32
+Recall    = 0.95
+F1-score  ≈ 0.48
+```
+
+Meaning:
+
+> The model catches most real disease cases, but it creates many false alarms.
+
+F1-score is not very high because precision is low.
+
+---
+
+### Case D — Both precision and recall are low
+
+```text
+Precision = 0.30
+Recall    = 0.30
+F1-score  = 0.30
+```
+
+Meaning:
+
+> The model is weak overall for that class.
+
+---
+
+## 7. Simple Way to Explain F1-Score
+
+Use this:
+
+```text
+Precision = Can I trust the model when it predicts this disease?
+Recall    = Did the model find most real examples of this disease?
+F1-score  = Balance between trustworthiness and finding ability
+Support   = Number of real examples for that class
+```
+
+F1-score becomes high only when both precision and recall are strong.
+
+If either precision or recall is very low, the F1-score also drops.
+
+---
+
+## 8. Plant Disease Interpretation
+
+For plant disease detection:
+
+```text
+Low precision = many false alarms
+Low recall    = many missed diseases
+Low F1-score  = poor balance between false alarms and missed diseases
+```
+
+If a disease is dangerous, recall may be especially important because missing the disease could cause real damage.
+
+If false alarms are costly, precision becomes more important.
+
+A strong model should ideally have both high precision and high recall.
+
 ### Support
 
 Support means the number of real validation examples for that class.
