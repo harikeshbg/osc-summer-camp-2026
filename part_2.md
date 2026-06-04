@@ -103,6 +103,7 @@ No. The code checks whether a GPU is available. If not, it uses the CPU.
 
 **Answer:**
 It helps make results more repeatable by controlling some randomness in PyTorch.
+Ex: Why it matters for weights?: Neural networks start by picking "random" numbers for their weights. If you do not set a seed, the computer picks a random page every time you hit run. By setting the seed, you force the computer to pick the exact same starting weights every single time.
 
 ---
 
